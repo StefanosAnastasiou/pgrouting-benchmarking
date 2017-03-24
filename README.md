@@ -7,8 +7,12 @@ In the second approach the shortest path is also computed in the database having
 
 Developed and tested with:
    
-   Web Μapping Εngine:   Compiled MapServer 7.0.1 
-   Client-side       :   OpenLayers 3.2
-   Server-side       :   php 5.5.38
-   Database          :   PostGIS 2.3.2
-   Routing           :   pgRouting 2.3.1
+       Web Μapping Εngine:   Compiled MapServer 7.0.1 
+	
+       Client-side       :   OpenLayers 3.2
+	
+       Server-side       :   php 5.5.38
+	
+       Database          :   PostGIS 2.3.2
+	
+       Routing           :   pgRouting 2.3.1
