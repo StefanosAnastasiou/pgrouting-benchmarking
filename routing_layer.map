@@ -1,0 +1,37 @@
+  #This is the mapfile's portion for the shortest path calculated and then sent to OpenLayer as a new WMS service
+  LAYER 
+       NAME 'Route'
+       SIZEUNITS meters
+       VALIDATION             
+            "x1" "^[0-9]+(\.[0-9]+)?$"
+            "y1" "^[0-9]+(\.[0-9]+)?$"
+            "x2" "^[0-9]+(\.[0-9]+)?$"
+            "y2" "^[0-9]+(\.[0-9]+)?$"
+            "default_x1" "300006.3"       #Start point and endpoint have the same values so no line is drawn if no values are passed to the Run-time Substitution mechanism. Otherwise MapServer throws error
+            "default_y1" "4373897.9"
+            "default_x2" "300006.3"
+            "default_y2" "4373897.9"
+       END
+       METADATA
+               "wms_title"             "Shortest Path"
+               "wms_srs"               "EPSG:2100"      
+               "wfs_title"             "Shortest Path"
+               "wfs_srs"               "EPSG:2100"
+               "gml_include_items"     "all"
+               "gml_featureid"         "gid"
+               "wfs_enable_request"    "*" 
+        END
+        TYPE line
+        STATUS on
+        CLASSITEM "street"
+        CONNECTIONTYPE POSTGIS
+        CONNECTION 'host=localhost port=5432 user=user password=user_password dbname=database_name'
+        DATA "geom FROM (SELECT * FROM routing_function(%x1%, %y1%, %x2%, %y2%)) AS foo USING UNIQUE seq USING srid=2100"
+        CLASS
+            NAME "Route"
+            STYLE
+                COLOR 255 0 0
+                WIDTH 4
+           END
+       END
+   END
