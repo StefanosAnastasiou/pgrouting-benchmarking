@@ -16,3 +16,7 @@ Developed and tested with:
        Database          :   PostGIS 2.3.2
 	
        Routing           :   pgRouting 2.3.1
+       
+       
+
+Data used for shortest path is the road network of Trikala, Greece (EPSG / SRID: 2100)
