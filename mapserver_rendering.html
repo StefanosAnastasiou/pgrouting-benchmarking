@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+
+<html>
+
+
+<head>
+   <title>Rendering in MapServer</title>
+      
+          <style type="text/css">
+	         .map{
+		            width:95%;
+                height:550;
+                 }
+          </style>
+
+       <link rel="stylesheet" type="text/css" href="/ol3_samples/assets/ol/css/ol.css" />
+
+ </head>
+
+  <body>
+     
+         <div id="map" class="map"></div>
+         <button id="clear">clear</button>
+
+         <script type="text/javascript" src="/ol3_samples/assets/ol/js/ol.js"></script>
+         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.17/proj4-src.js"></script>
+         <script type="text/javascript" src="http://epsg.io/2100.js"></script>
+        <script
+  src="https://code.jquery.com/jquery-3.1.1.js"
+  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+  crossorigin="anonymous"></script> 
+
+
+
+        <script>
+     
+        var projection = new ol.proj.Projection({
+            code: 'EPSG:2100',
+            extent: [104022.946289, 3850785.500488, 1007956.563293, 4624047.765686]
+        });
+
+        var myExtent = [299999.812586, 4373991.872258, 316002.754117, 4386000.862057];
+
+        
+        var wms = new ol.layer.Image({
+            source: new ol.source.ImageWMS({
+                params: {                 
+                 'LAYERS': 'Sinoikies,Rivers,Parks,Roads,Railroad,Infrastracture,Pois',
+                  'FORMAT' : 'image/png',
+                  'TRANSPARENT': 'false'
+                  },               
+                 url: 'http://localhost/cgi-bin/mapserv?map=/home/stefanos/mapdata/fifth.map'             
+            })
+
+        });
+
+   
+       var view = new ol.View({
+          extent: myExtent,
+          zoom: 8,
+          minZoom: 7,
+          maxZoom:16,
+          projection: projection,
+          center: ol.proj.fromLonLat([21.767769, 39.555859], projection),
+       });
+
+       var controls =  ol.control.defaults().extend([
+          new ol.control.ScaleLine()
+      ]);
+
+
+       var map = new ol.Map({
+          target: 'map',
+          view: view,
+          controls:controls
+       });
+
+       map.addLayer(wms);
+
+   
+      var startPoint = new ol.Feature();
+      var destPoint = new ol.Feature();
+
+      var x1 = 0;
+      var y2 = 0;
+      var routingLayer = null;
+
+      map.on('click', function(event){
+      
+
+      if (startPoint.getGeometry() == null){
+
+      		startPoint.setGeometry(new ol.geom.Point(event.coordinate));
+        
+          var startCoord = event.coordinate;        
+
+           x1 = startCoord[0];
+           y1 = startCoord[1];
+
+    
+      
+      }else if(destPoint.getGeometry() == null){
+
+          destPoint.setGeometry(new ol.geom.Point(event.coordinate));
+
+          var endCoord = event.coordinate;
+
+          var x2 = endCoord[0];
+          var y2 = endCoord[1];
+
+      
+
+          routingLayer = new ol.layer.Image({
+            source: new ol.source.ImageWMS({
+                params: {                 
+                 'LAYERS': 'Route',
+                  'FORMAT' : 'image/png',
+                  'TRANSPARENT': 'true'
+                  },                                   
+               url: 'http://localhost/cgi-bin/mapserv?map=/home/stefanos/mapdata/fifth.map&layer=Route&x1='+x1+'&x2='+x2+'&y1='+y1+'&y2='+y2            
+              }) 
+
+        });
+
+          map.addLayer(routingLayer)
+        
+      }
+
+      });
+
+
+
+       var clearButton = document.getElementById('clear');
+         clearButton.addEventListener('click', function(event) {
+           // Reset the "start" and "destination" features.
+           startPoint.setGeometry(null);
+           destPoint.setGeometry(null);
+           // Remove the result layer.
+          map.removeLayer(routingLayer);
+  });
+
+
+
+        </script>
+
+    
+ </body>
+
+</html>
