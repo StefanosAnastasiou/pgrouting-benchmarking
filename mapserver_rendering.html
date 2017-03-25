@@ -7,8 +7,8 @@
       
           <style type="text/css">
 	         .map{
-		            width:95%;
-                height:550;
+		         width:95%;
+                         height:550;
                  }
           </style>
 
@@ -17,16 +17,13 @@
  </head>
 
   <body>
-     
          <div id="map" class="map"></div>
          <button id="clear">clear</button>
 
          <script type="text/javascript" src="/ol3_samples/assets/ol/js/ol.js"></script>
          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.17/proj4-src.js"></script>
          <script type="text/javascript" src="http://epsg.io/2100.js"></script>
-        <script
-  src="https://code.jquery.com/jquery-3.1.1.js"
-  integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
+        <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
   crossorigin="anonymous"></script> 
 
         <script>
@@ -81,11 +78,9 @@
 
       map.on('click', function(event){
       
-
       if (startPoint.getGeometry() == null){
 
           startPoint.setGeometry(new ol.geom.Point(event.coordinate));
-        
           var startCoord = event.coordinate;        
 
            x1 = startCoord[0];
@@ -116,7 +111,6 @@
      
         }
       });
-
 
        var clearButton = document.getElementById('clear');
          clearButton.addEventListener('click', function(event) {
