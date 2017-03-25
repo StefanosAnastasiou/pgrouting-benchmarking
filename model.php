@@ -18,7 +18,9 @@ class Connection{
  
 
   public function __construct(){
-
+   
+    //This variable distinguishes each request making sure that each user user makes a distinct records in the
+    // temporary database
     $this->remote_user = $_SERVER['REMOTE_ADDR'];
 
     $options = array(
@@ -109,7 +111,8 @@ class Connection{
      }
 
 
-   //The results are coming asynchronouysly and are stored in a temporary database. # To be revised. May cause trouble if the user selects start point and closes page without end point.
+   // The results are coming asynchronouysly and are stored in a temporary database. 
+   // To be revised. May cause trouble if the user selects start point and closes page without end point.
     public function tempDB($keyXval, $keyYval, $xValue, $yValue){
         
       
