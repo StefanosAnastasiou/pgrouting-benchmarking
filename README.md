@@ -20,7 +20,7 @@ Developed and tested with:
        
 
 Data used for shortest path is the road network of Trikala, Greece (EPSG / SRID: 2100) all digitized using QGIS and Ortho Rectified images.
-The data were imported using shp2pgsql-gui and topology was created using pgRouting extension. For simplicity reasons, it is assumed that the data are not directed and no reverse cost is taken into consideration in Dijkstra's algorithm. 
+The data were imported using shp2pgsql-gui and topology was created using pgRouting extension.
 The test was run regarding the time needed for execution and shortest path rendering. The results were by far faster when the rendering was performed in MapServer (see benchmarking.jpg). 
 
 
