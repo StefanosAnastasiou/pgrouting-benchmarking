@@ -1,5 +1,5 @@
 # pgrouting-benchmarking
-Comparison between client-side shortest path and MapServer rendering
+Comparing MapServer and Client-Side rendering for shortest path routing
 
 This is a simple application in Web Mapping and shorest path routing using Open Source Software and Technologies. Two different methods are developed and tested. In the first approach the shortest path is computed in the database with the use of Dijkstra's algorithm, having as input from the user a start point and an end point. The shortest path is rendered as a WMS service directly in MapServer with Run-time Substitution mechanism.
 
