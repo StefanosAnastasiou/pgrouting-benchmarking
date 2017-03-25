@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
-
 <html>
-
 
 <head>
    <title>Rendering in MapServer</title>
@@ -31,8 +29,6 @@
   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
   crossorigin="anonymous"></script> 
 
-
-
         <script>
      
         var projection = new ol.proj.Projection({
@@ -55,7 +51,6 @@
 
         });
 
-   
        var view = new ol.View({
           extent: myExtent,
           zoom: 8,
@@ -69,7 +64,6 @@
           new ol.control.ScaleLine()
       ]);
 
-
        var map = new ol.Map({
           target: 'map',
           view: view,
@@ -78,7 +72,6 @@
 
        map.addLayer(wms);
 
-   
       var startPoint = new ol.Feature();
       var destPoint = new ol.Feature();
 
@@ -91,15 +84,13 @@
 
       if (startPoint.getGeometry() == null){
 
-      		startPoint.setGeometry(new ol.geom.Point(event.coordinate));
+          startPoint.setGeometry(new ol.geom.Point(event.coordinate));
         
           var startCoord = event.coordinate;        
 
            x1 = startCoord[0];
            y1 = startCoord[1];
 
-    
-      
       }else if(destPoint.getGeometry() == null){
 
           destPoint.setGeometry(new ol.geom.Point(event.coordinate));
@@ -108,8 +99,6 @@
 
           var x2 = endCoord[0];
           var y2 = endCoord[1];
-
-      
 
           routingLayer = new ol.layer.Image({
             source: new ol.source.ImageWMS({
@@ -124,11 +113,9 @@
         });
 
           map.addLayer(routingLayer)
-        
-      }
-
+     
+        }
       });
-
 
 
        var clearButton = document.getElementById('clear');
@@ -139,12 +126,8 @@
            // Remove the result layer.
           map.removeLayer(routingLayer);
   });
-
-
-
+		
         </script>
-
-    
  </body>
 
 </html>
