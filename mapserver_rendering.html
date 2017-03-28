@@ -39,11 +39,11 @@
         var wms = new ol.layer.Image({
             source: new ol.source.ImageWMS({
                 params: {                 
-                 'LAYERS': 'Sinoikies,Rivers,Parks,Roads,Railroad,Infrastracture,Pois',
+                 'LAYERS': 'Roads',
                   'FORMAT' : 'image/png',
                   'TRANSPARENT': 'false'
                   },               
-                 url: 'http://localhost/cgi-bin/mapserv?map=/home/stefanos/mapdata/fifth.map'             
+                 url: 'http://localhost/cgi-bin/mapserv?map=/home/user/mapdata/mapfile.map'             
             })
 
         });
@@ -102,7 +102,7 @@
                   'FORMAT' : 'image/png',
                   'TRANSPARENT': 'true'
                   },                                   
-               url: 'http://localhost/cgi-bin/mapserv?map=/home/stefanos/mapdata/fifth.map&layer=Route&x1='+x1+'&x2='+x2+'&y1='+y1+'&y2='+y2            
+               url: 'http://localhost/cgi-bin/mapserv?map=/home/user/mapdata/mapfile.map&layer=Route&x1='+x1+'&x2='+x2+'&y1='+y1+'&y2='+y2            
               }) 
 
         });
