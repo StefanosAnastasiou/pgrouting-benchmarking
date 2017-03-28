@@ -12,8 +12,8 @@
             "default_x2" "300006.3"
             "default_y2" "4373897.9"
        END
-       METADATA
-               "wms_title"             "Shortest Path"
+       METADATA 
+               "wms_title"             "Shortest Path"         # WMS / WFS parameters
                "wms_srs"               "EPSG:2100"      
                "wfs_title"             "Shortest Path"
                "wfs_srs"               "EPSG:2100"
