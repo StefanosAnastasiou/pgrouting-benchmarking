@@ -8,8 +8,8 @@ class Connection{
   private $dbname = 'dbName';     
   private $dbh;
   private $stmt;
-  public $keyX;
-  public $keyY;
+  public $keyX;    // Variable to distinct the incoming x1 from x2
+  public $keyY;    // Variable to distinct the incoming y1 from y2
   public $x1;
   public $y1;
   public $x2;
@@ -57,7 +57,7 @@ class Connection{
               }
 
         }else{
-              exit();
+              exit();  
       }
         
     }
@@ -112,7 +112,7 @@ class Connection{
 
 
    // The results are coming asynchronouysly and are stored in a temporary database. 
-   // To be revised. May cause trouble if the user selects start point and closes page without end point.
+   // To be revised. May cause trouble if the user selects start point and closes page without end point. The first pair of coordinate stays written in the database
     public function tempDB($keyXval, $keyYval, $xValue, $yValue){
         
       
