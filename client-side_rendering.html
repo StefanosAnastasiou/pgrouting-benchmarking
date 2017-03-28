@@ -2,8 +2,6 @@
 <meta charset="UTF-8">
 
 <html>
-
-
 <head>
    <title>Client-Side Rendering</title>
       
@@ -24,13 +22,12 @@
          <button id="clear">clear</button>
 
          <script type="text/javascript" src="/ol3_samples/assets/ol/js/ol.js"></script> 
-         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.17/proj4-src.js"></script>
+         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.17/proj4-src.js"></script> <!-- proj4js JavaScript library. Necessary so we can include EPSG 2100.-->
          <script type="text/javascript" src="http://epsg.io/2100.js"></script>
         <script
   src="https://code.jquery.com/jquery-3.1.1.js"
   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
-  crossorigin="anonymous"></script> 
-
+  crossorigin="anonymous"></script>      <!-- jQuery library. Necessary so we can send the coordinates to the php script -->
 
         <script>
 
@@ -41,7 +38,6 @@
 
         var myExtent = [299999.812586, 4373991.872258, 316002.754117, 4386000.862057];
 
-        
         var mapserverMap = new ol.layer.Image({
             source: new ol.source.ImageWMS({
                 params: {                 
@@ -50,9 +46,7 @@
                   'TRANSPARENT': 'false'
                   },               
                 url: 'http://localhost/cgi-bin/mapserv?map=/home/user/mapdata/mapfile.map'
-
             })
-
         });
 
        var view = new ol.View({
@@ -86,15 +80,14 @@
 
       if (startPoint.getGeometry() == null){
 
-      		startPoint.setGeometry(new ol.geom.Point(event.coordinate));                
+      	  startPoint.setGeometry(new ol.geom.Point(event.coordinate));                
 
           var x1 = startPoint.getGeometry().getCoordinates()[0];
           var y1 = startPoint.getGeometry().getCoordinates()[1];
           
             $.ajax({
-              url: 'route.php?x1='+x1+'&y1='+y1,
+              url: 'route.php?x1='+x1+'&y1='+y1,  //sends the first pair of coordinates from first click
            });  
-
       
       }else if(destPoint.getGeometry() == null){
 
@@ -110,12 +103,11 @@
 
           $.ajax({
               type: "GET",
-              url: 'route.php?x2='+x2+'&y2='+y2,
+              url: 'route.php?x2='+x2+'&y2='+y2,   //sends the second pair of coordinates with second click
               dataType: "xml",             
               success: function(response){ 
 
-                 var results = response.getElementsByTagName('geometry');
-                 
+                 var results = response.getElementsByTagName('geometry');     //captures the 'geometry' XML tag produced by the php script           
                  var text = $(results).text();
                  
                  for(var i = 0; i < results.length; i++){
@@ -123,7 +115,6 @@
                      var text = $(results[i]).text(); 
                      feature = wkt.readFeature(text);
                      features.push(feature);    
-            
                  }  
             
                  source = new ol.source.Vector({
@@ -141,22 +132,15 @@
            }); 
         }  
      }); 
-  
 
          var clearButton = document.getElementById('clear');
          clearButton.addEventListener('click', function(event) {
            
               startPoint.setGeometry(null);
-              destPoint.setGeometry(null);
-        
+              destPoint.setGeometry(null);        
               map.removeLayer(vectorLayer);
-             
          });
 
-
         </script>
-
-    
  </body>
-
 </html>
