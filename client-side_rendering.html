@@ -9,8 +9,8 @@
       
           <style type="text/css">
 	         .map{
-		            width:90%;
-                height:550;
+		     width:90%;
+                     height:550;
                  }
           </style>
 
@@ -23,7 +23,7 @@
          <div id="map" class="map"></div>
          <button id="clear">clear</button>
 
-         <script type="text/javascript" src="/ol3_samples/assets/ol/js/ol.js"></script>
+         <script type="text/javascript" src="/ol3_samples/assets/ol/js/ol.js"></script> 
          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.17/proj4-src.js"></script>
          <script type="text/javascript" src="http://epsg.io/2100.js"></script>
         <script
@@ -45,11 +45,11 @@
         var mapserverMap = new ol.layer.Image({
             source: new ol.source.ImageWMS({
                 params: {                 
-                 'LAYERS': 'Sinoikies,Rivers,Parks,Roads,Railroad,Infrastracture,Pois',
+                 'LAYERS': 'Roads',
                   'FORMAT' : 'image/png',
                   'TRANSPARENT': 'false'
                   },               
-                url: 'http://localhost/cgi-bin/mapserv?map=/home/stefanos/mapdata/fifth.map'
+                url: 'http://localhost/cgi-bin/mapserv?map=/home/user/mapdata/mapfile.map'
 
             })
 
