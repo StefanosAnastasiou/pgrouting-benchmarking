@@ -30,7 +30,7 @@
         CLASS
             NAME "Route"
             STYLE
-                COLOR 255 0 0
+                COLOR 255 0 0                                 # Routing layer is drawn in red color.
                 WIDTH 4
            END
        END
